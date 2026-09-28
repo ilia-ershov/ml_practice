@@ -1,0 +1,176 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, russian, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{russian}
+\babelfont{rm}{Noto Sans}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{\textbf{Полные решения заданий}\\ \large Задание 2. Матрицы и матричные операции}
+\author{Линейная алгебра}
+\date{2024}
+
+\begin{document}
+
+\maketitle
+
+% ==========================================
+\section{Раздел 1. Операции над матрицами}
+% ==========================================
+
+\subsection*{Задание 1.1}
+\textbf{Условие:} Найдите линейную комбинацию $3A - 2B + C$ для матриц:
+$$ A = \begin{pmatrix} 2 & -1 & 4 \\ 0 & 3 & -2 \end{pmatrix}, \quad B = \begin{pmatrix} -1 & 5 & 2 \\ 4 & -3 & 1 \end{pmatrix}, \quad C = \begin{pmatrix} 3 & 0 & -1 \\ -2 & 1 & 4 \end{pmatrix} $$
+
+\textbf{Решение:}
+Выполним умножение матриц на скаляры покомпонентно:
+$$ 3A = \begin{pmatrix} 6 & -3 & 12 \\ 0 & 9 & -6 \end{pmatrix}, \quad -2B = \begin{pmatrix} 2 & -10 & -4 \\ -8 & 6 & -2 \end{pmatrix} $$
+Складываем матрицы $3A$, $-2B$ и $C$:
+\begin{align*}
+3A - 2B + C &= \begin{pmatrix} 6 + 2 + 3 & -3 - 10 + 0 & 12 - 4 - 1 \\ 0 - 8 - 2 & 9 + 6 + 1 & -6 - 2 + 4 \end{pmatrix} \\
+&= \begin{pmatrix} 11 & -13 & 7 \\ -10 & 16 & -4 \end{pmatrix}.
+\end{align*}
+
+\textbf{Ответ:} $\begin{pmatrix} 11 & -13 & 7 \\ -10 & 16 & -4 \end{pmatrix}$.
+
+---
+
+\subsection*{Задание 1.2}
+\textbf{Условие:} Вычислите произведение матриц $A \cdot B$, если:
+$$ A = \begin{pmatrix} 1 & 3 & -2 \\ 2 & 0 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & 1 \\ -1 & 3 \\ 0 & -2 \end{pmatrix} $$
+
+\textbf{Решение:}
+Размерность $A$ равна $2 \times 3$, а размерность $B$ равна $3 \times 2$. Результат будет иметь размерность $2 \times 2$.
+Поэлементное умножение («строка на столбец»):
+\begin{align*}
+(AB)_{11} &= 1 \cdot 2 + 3 \cdot (-1) + (-2) \cdot 0 = 2 - 3 + 0 = -1, \\
+(AB)_{12} &= 1 \cdot 1 + 3 \cdot 3 + (-2) \cdot (-2) = 1 + 9 + 4 = 14, \\
+(AB)_{21} &= 2 \cdot 2 + 0 \cdot (-1) + 4 \cdot 0 = 4 + 0 + 0 = 4, \\
+(AB)_{22} &= 2 \cdot 1 + 0 \cdot 3 + 4 \cdot (-2) = 2 + 0 - 8 = -6.
+\end{align*}
+
+\textbf{Ответ:} $AB = \begin{pmatrix} -1 & 14 \\ 4 & -6 \end{pmatrix}$.
+
+---
+
+\subsection*{Задание 1.3}
+\textbf{Условие:} Найдите транспонированную матрицу $A^T$ и проверьте равенство $(A^T)^T = A$ для матрицы:
+$$ A = \begin{pmatrix} 4 & 1 & -3 \\ 2 & 8 & 5 \end{pmatrix} $$
+
+\textbf{Решение:}
+1. Меняем строки и столбцы местами, чтобы получить $A^T$ размерности $3 \times 2$:
+$$ A^T = \begin{pmatrix} 4 & 2 \\ 1 & 8 \\ -3 & 5 \end{pmatrix} $$
+2. Повторно транспонируем получившуюся матрицу:
+$$ (A^T)^T = \begin{pmatrix} 4 & 1 & -3 \\ 2 & 8 & 5 \end{pmatrix} = A. $$
+
+\textbf{Ответ:} $A^T = \begin{pmatrix} 4 & 2 \\ 1 & 8 \\ -3 & 5 \end{pmatrix}$, равенство выполняется.
+
+\newpage
+
+% ==========================================
+\section{Раздел 2. Определители и обратные матрицы}
+% ==========================================
+
+\subsection*{Задание 2.1}
+\textbf{Условие:} Вычислите определитель квадратной матрицы третьего порядка:
+$$ A = \begin{pmatrix} 2 & 3 & -1 \\ 4 & 1 & 5 \\ -2 & 0 & 3 \end{pmatrix} $$
+
+\textbf{Решение:}
+Разложим определитель по третьей строке (содержащей ноль):
+\begin{align*}
+\det(A) &= (-2) \cdot (-1)^{3+1} \begin{vmatrix} 3 & -1 \\ 1 & 5 \end{vmatrix} + 0 \cdot (-1)^{3+2} + 3 \cdot (-1)^{3+3} \begin{vmatrix} 2 & 3 \\ 4 & 1 \end{vmatrix} \\
+&= -2 \cdot (15 - (-1)) + 3 \cdot (2 - 12) \\
+&= -2 \cdot 16 + 3 \cdot (-10) \\
+&= -32 - 30 = -62.
+\end{align*}
+
+\textbf{Ответ:} $\det(A) = -62$.
+
+---
+
+\subsection*{Задание 2.2}
+\textbf{Условие:} Найдите обратную матрицу $A^{-1}$ для матрицы $A = \begin{pmatrix} 3 & 4 \\ 1 & 2 \end{pmatrix}$.
+
+\textbf{Решение:}
+Формула обратной матрицы $2 \times 2$: для $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ имеем $M^{-1} = \frac{1}{\det(M)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
+1. Вычислим определитель: $\det(A) = 3 \cdot 2 - 4 \cdot 1 = 6 - 4 = 2 \ne 0$.
+2. Составим обратную матрицу:
+$$ A^{-1} = \frac{1}{2} \begin{pmatrix} 2 & -4 \\ -1 & 3 \end{pmatrix} = \begin{pmatrix} 1 & -2 \\ -0.5 & 1.5 \end{pmatrix}. $$
+
+\textbf{Проверка:}
+$$ A \cdot A^{-1} = \begin{pmatrix} 3 & 4 \\ 1 & 2 \end{pmatrix} \begin{pmatrix} 1 & -2 \\ -0.5 & 1.5 \end{pmatrix} = \begin{pmatrix} 3-2 & -6+6 \\ 1-1 & -2+3 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I. $$
+
+\textbf{Ответ:} $A^{-1} = \begin{pmatrix} 1 & -2 \\ -0.5 & 1.5 \end{pmatrix}$.
+
+\newpage
+
+% ==========================================
+\section{Раздел 3. Матричные уравнения}
+% ==========================================
+
+\subsection*{Задание 3.1}
+\textbf{Условие:} Найдите неизвестную матрицу $X$ из уравнения $A \cdot X = B$, где:
+$$ A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} $$
+
+\textbf{Решение:}
+Умножим обе части уравнения слева на $A^{-1}$:
+$$ X = A^{-1} \cdot B. $$
+1. Вычислим $A^{-1}$:
+$$ \det(A) = 1 \cdot 4 - 2 \cdot 3 = 4 - 6 = -2. $$
+$$ A^{-1} = -\frac{1}{2} \begin{pmatrix} 4 & -2 \\ -3 & 1 \end{pmatrix} = \begin{pmatrix} -2 & 1 \\ 1.5 & -0.5 \end{pmatrix}. $$
+2. Перемножим $A^{-1}$ и $B$:
+\begin{align*}
+X &= \begin{pmatrix} -2 & 1 \\ 1.5 & -0.5 \end{pmatrix} \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} \\
+&= \begin{pmatrix} (-2)\cdot 5 + 1\cdot 7 & (-2)\cdot 6 + 1\cdot 8 \\ 1.5\cdot 5 + (-0.5)\cdot 7 & 1.5\cdot 6 + (-0.5)\cdot 8 \end{pmatrix} \\
+&= \begin{pmatrix} -10 + 7 & -12 + 8 \\ 7.5 - 3.5 & 9 - 4 \end{pmatrix} = \begin{pmatrix} -3 & -4 \\ 4 & 5 \end{pmatrix}.
+\end{align*}
+
+\textbf{Ответ:} $X = \begin{pmatrix} -3 & -4 \\ 4 & 5 \end{pmatrix}$.
+
+\newpage
+
+% ==========================================
+\section{Раздел 4. Бонусные задания и Теория}
+% ==========================================
+
+\subsection*{Бонус 1}
+\textbf{Условие:} Вычислите след (Trace) матрицы $A$ и найдите след матрицы $AB - BA$, если матрицы $A$ и $B$ квадратные порядка $n$.
+
+\textbf{Решение:}
+1. \textbf{След матрицы} $\text{Tr}(A)$ равен сумме элементов на ее главной диагонали: $\text{Tr}(A) = \sum_{i=1}^n a_{ii}$.
+2. По свойствам следа матрицы:
+   \begin{itemize}
+   \item Линейность: $\text{Tr}(X - Y) = \text{Tr}(X) - \text{Tr}(Y)$.
+   \item Циклическая перестановка аргументов: $\text{Tr}(AB) = \text{Tr}(BA)$.
+   \end{itemize}
+3. Следовательно:
+$$ \text{Tr}(AB - BA) = \text{Tr}(AB) - \text{Tr}(BA) = \text{Tr}(AB) - \text{Tr}(AB) = 0. $$
+
+\textbf{Ответ:} $\text{Tr}(AB - BA) = 0$ для любых квадратных матриц одинакового порядка.
+
+---
+
+\subsection*{Теория}
+
+\textbf{a) Всегда ли выполнено равенство $AB = BA$ для квадратных матриц?}
+\begin{proof}[Ответ]
+Нет, в общем случае умножение матриц \textbf{некоммутативно} ($AB \ne BA$). 
+
+\textit{Пример:} Возьмем матрицы $A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ и $B = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$. \\
+Перемножим их в разном порядке:
+$$ AB = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, $$
+$$ BA = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}. $$
+Очевидно, что $AB \ne BA$.
+\end{proof}
+
+\textbf{b) Что происходит с определителем матрицы при транспонировании?}
+\begin{proof}[Ответ]
+Определитель матрицы при транспонировании не меняется:
+$$ \det(A^T) = \det(A). $$
+Это следствие того, что все свойства определителя равноправны как для строк, так и для столбцов.
+\end{proof}
+
+\end{document}
