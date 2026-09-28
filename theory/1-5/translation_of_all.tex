@@ -1,0 +1,662 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{\textbf{Linear Algebra: Comprehensive Problem Solutions}\\ \large Complete Problem Sets 1–5 (Vectors, Matrices, Linear Spaces, Operators, and SVD/Tensors)}
+\author{Linear Algebra Coursework}
+\date{2024}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+% ASSIGNMENT 1
+% ==============================================================================
+\part{Assignment 1. Vectors and Linear Systems}
+
+\section{Section 1. Linear Combinations and Vector Equations}
+
+\subsection*{Problem 1.1}
+\textbf{Problem Statement:} Find the linear combination $7a+3b-4c$ for the following vectors:
+$$ a = (3, -1, 3), \quad b = (5, 2, 7), \quad c = (-3, -2, 6) $$
+
+\textbf{Solution:}
+Multiply each vector by its corresponding scalar and perform component-wise addition:
+\begin{align*}
+7a &= 7 \cdot (3, -1, 3) = (21, -7, 21), \\
+3b &= 3 \cdot (5, 2, 7) = (15, 6, 21), \\
+-4c &= -4 \cdot (-3, -2, 6) = (12, 8, -24).
+\end{align*}
+Summing the results:
+\begin{align*}
+7a + 3b - 4c &= (21 + 15 + 12, \; -7 + 6 + 8, \; 21 + 21 - 24) \\
+&= (48, 7, 18).
+\end{align*}
+
+\textbf{Answer:} $(48, 7, 18)$.
+
+---
+
+\subsection*{Problem 1.2}
+\textbf{Problem Statement:} Solve for the vector $x$ in the given equations:
+
+\medskip
+\textbf{a)} $a + 9b + x - c = 0$, where $a = (3, 5, 1, 6)$, $b = (2, 9, 4, 2)$, $c = (3, 2, 8, 4)$.
+
+\textbf{Solution:}
+Isolate vector $x$:
+$$ x = c - a - 9b. $$
+Calculate $9b$:
+$$ 9b = 9 \cdot (2, 9, 4, 2) = (18, 81, 36, 18). $$
+Compute the components of $x$:
+\begin{align*}
+x_1 &= 3 - 3 - 18 = -18, \\
+x_2 &= 2 - 5 - 81 = -84, \\
+x_3 &= 8 - 1 - 36 = -29, \\
+x_4 &= 4 - 6 - 18 = -20.
+\end{align*}
+
+\textbf{Answer:} $x = (-18, -84, -29, -20)$.
+
+\medskip
+\textbf{b)} $3.5(a - x) - 2(b + x) + 1.5(c + 3x) = 0$, where $a = (3, 5, 4, 2)$, $b = (2, 3, 4, 2)$, $c = (5, 2, 9, 3)$.
+
+\textbf{Solution:}
+Expand and group the terms containing $x$:
+$$ 3.5a - 3.5x - 2b - 2x + 1.5c + 4.5x = 0 $$
+$$ (-3.5 - 2 + 4.5)x + 3.5a - 2b + 1.5c = 0 $$
+$$ -x + 3.5a - 2b + 1.5c = 0 \implies x = 3.5a - 2b + 1.5c. $$
+
+Compute the components of $x$:
+\begin{align*}
+x_1 &= 3.5(3) - 2(2) + 1.5(5) = 10.5 - 4 + 7.5 = 14, \\
+x_2 &= 3.5(5) - 2(3) + 1.5(2) = 17.5 - 6 + 3 = 14.5, \\
+x_3 &= 3.5(4) - 2(4) + 1.5(9) = 14 - 8 + 13.5 = 19.5, \\
+x_4 &= 3.5(2) - 2(2) + 1.5(3) = 7 - 4 + 4.5 = 7.5.
+\end{align*}
+
+\textbf{Answer:} $x = (14, 14.5, 19.5, 7.5)$.
+
+---
+
+\subsection*{Problem 1.3}
+\textbf{Problem Statement:} Given vectors $a=(1,2)$ and $b=(4,3)$. Their linear combination yields $c=(57,45)$. Find the coefficients.
+
+\textbf{Solution:}
+Set up the linear combination equation $\alpha a + \beta b = c$:
+$$ \begin{cases} \alpha + 4\beta = 57 \\ 2\alpha + 3\beta = 45 \end{cases} $$
+Multiply the first equation by $2$:
+$$ 2\alpha + 8\beta = 114 $$
+Subtract the second equation:
+$$ (2\alpha + 8\beta) - (2\alpha + 3\beta) = 114 - 45 \implies 5\beta = 69 \implies \beta = \frac{69}{5} = 13.8. $$
+Find $\alpha$:
+$$ \alpha = 57 - 4(13.8) = 57 - 55.2 = 1.8 = \frac{9}{5}. $$
+
+\textbf{Answer:} $\alpha = 1.8$ (or $\frac{9}{5}$), $\beta = 13.8$ (or $\frac{69}{5}$).
+
+---
+
+\subsection*{Problem 1.4}
+\textbf{Problem Statement:} Find $\alpha$ such that vectors $a=(3,\alpha,2)$ and $b=(2-\alpha,-1,5)$ are orthogonal.
+
+\textbf{Solution:}
+Vectors are orthogonal if and only if their dot product is zero:
+$$ \langle a, b \rangle = 0 $$
+\begin{align*}
+3(2 - \alpha) + \alpha(-1) + 2(5) &= 0 \\
+6 - 3\alpha - \alpha + 10 &= 0 \\
+16 - 4\alpha &= 0 \implies \alpha = 4.
+\end{align*}
+
+\textbf{Answer:} $\alpha = 4$.
+
+\newpage
+
+\section{Section 2. Norms, Angles, and Vector Properties}
+
+\subsection*{Problem 2.1}
+\textbf{Problem Statement:} Compute the Manhattan ($\ell_1$) and Euclidean ($\ell_2$) norms for:
+\begin{enumerate}[label=\alph*)]
+\item $a = (3, 9, 2, 3, 4, 0, -1, -11, 3)$
+\item $b = (12, 13, 23, -22, -34, 31, 21)$
+\end{enumerate}
+
+\textbf{Solution:}
+
+\textbf{a)}
+\begin{itemize}
+\item \textbf{Manhattan Norm ($\ell_1$):}
+$$ \|a\|_1 = |3| + |9| + |2| + |3| + |4| + |0| + |-1| + |-11| + |3| = 36. $$
+\item \textbf{Euclidean Norm ($\ell_2$):}
+$$ \|a\|_2 = \sqrt{3^2 + 9^2 + 2^2 + 3^2 + 4^2 + 0^2 + (-1)^2 + (-11)^2 + 3^2} = \sqrt{250} = 5\sqrt{10} \approx 15.811. $$
+\end{itemize}
+
+\textbf{b)}
+\begin{itemize}
+\item \textbf{Manhattan Norm ($\ell_1$):}
+$$ \|b\|_1 = |12| + |13| + |23| + |-22| + |-34| + |31| + |21| = 156. $$
+\item \textbf{Euclidean Norm ($\ell_2$):}
+$$ \|b\|_2 = \sqrt{12^2 + 13^2 + 23^2 + (-22)^2 + (-34)^2 + 31^2 + 21^2} = \sqrt{3884} \approx 62.322. $$
+\end{itemize}
+
+---
+
+\subsection*{Problem 2.2}
+\textbf{Problem Statement:} Given vectors $a=(1,2,3)$ and $b=(4,3,5)$, find the angle between them.
+
+\textbf{Solution:}
+$$ \cos \theta = \frac{\langle a, b \rangle}{\|a\|_2 \|b\|_2} $$
+1. Dot product: $\langle a, b \rangle = 1 \cdot 4 + 2 \cdot 3 + 3 \cdot 5 = 25$.
+2. Norms: $\|a\|_2 = \sqrt{14}$, $\|b\|_2 = \sqrt{50} = 5\sqrt{2}$.
+3. Angle calculation:
+$$ \cos \theta = \frac{25}{\sqrt{14} \cdot 5\sqrt{2}} = \frac{5}{2\sqrt{7}} \approx 0.94491 \implies \theta = \arccos\left(\frac{5}{2\sqrt{7}}\right) \approx 19.11^\circ. $$
+
+\textbf{Answer:} $\theta \approx 19.11^\circ$.
+
+---
+
+\subsection*{Problem 2.3}
+\textbf{Problem Statement:} Vector $x$ of length 100 contains elements $x_i \ge 0$ (number of absences for student $i$). Using the $\ell_1$ norm, write formulas for:
+\begin{enumerate}[label=\alph*.]
+\item Total number of absences;
+\item Average number of absences.
+\end{enumerate}
+
+\textbf{Solution:}
+Since $x_i \ge 0$, $\|x\|_1 = \sum_{i=1}^{100} |x_i| = \sum_{i=1}^{100} x_i$.
+\begin{enumerate}[label=\alph*.]
+\item \textbf{Total Absences:} $S = \|x\|_1$.
+\item \textbf{Average Absences:} $\bar{x} = \frac{\|x\|_1}{100}$.
+\end{enumerate}
+
+---
+
+\subsection*{Problem 2.4}
+\textbf{Problem Statement:} Prove the identities for any vectors $a, b \in \mathbb{R}^n$:
+
+\medskip
+\textbf{a)} $(a+b)^T(a-b) = \|a\|^2 - \|b\|^2$
+
+\textbf{Proof:}
+$$ (a+b)^T(a-b) = (a^T + b^T)(a - b) = a^T a - a^T b + b^T a - b^T b. $$
+Since $a^T b = b^T a$ (scalar result), the middle terms cancel out:
+$$ a^T a - b^T b = \|a\|^2 - \|b\|^2. \quad \square $$
+
+\medskip
+\textbf{b)} $\|a+b\|^2 + \|a-b\|^2 = 2(\|a\|^2 + \|b\|^2)$
+
+\textbf{Proof:}
+\begin{align*}
+\|a+b\|^2 &= (a+b)^T(a+b) = \|a\|^2 + 2a^T b + \|b\|^2, \\
+\|a-b\|^2 &= (a-b)^T(a-b) = \|a\|^2 - 2a^T b + \|b\|^2.
+\end{align*}
+Summing both equations yields $2\|a\|^2 + 2\|b\|^2 = 2(\|a\|^2 + \|b\|^2)$. \qed
+
+\newpage
+
+\section{Section 3. Systems of Linear Equations (SLE) and Gaussian Elimination}
+
+\subsection*{Problem 3.1}
+\textbf{Problem Statement:} The perimeter of a triangle is $30\text{ cm}$. The longest side is $4\text{ cm}$ longer than the medium side. Three times the shortest side equals the sum of the medium and longest sides plus $2\text{ cm}$. Find the sides using Gaussian elimination.
+
+\textbf{Solution:}
+Let $x$ be the shortest, $y$ the medium, and $z$ the longest side.
+$$ \begin{cases} x + y + z = 30 \\ -y + z = 4 \\ 3x - y - z = 2 \end{cases} $$
+Augmented matrix reduction:
+$$ \left(\begin{array}{ccc|c} 1 & 1 & 1 & 30 \\ 0 & -1 & 1 & 4 \\ 3 & -1 & -1 & 2 \end{array}\right) \xrightarrow{R_3 \leftarrow R_3 - 3R_1} \left(\begin{array}{ccc|c} 1 & 1 & 1 & 30 \\ 0 & -1 & 1 & 4 \\ 0 & -4 & -4 & -88 \end{array}\right) \xrightarrow{R_3 \leftarrow R_3 - 4R_2} \left(\begin{array}{ccc|c} 1 & 1 & 1 & 30 \\ 0 & -1 & 1 & 4 \\ 0 & 0 & -8 & -104 \end{array}\right) $$
+Back-substitution:
+\begin{itemize}
+\item $-8z = -104 \implies z = 13\text{ cm}$.
+\item $-y + 13 = 4 \implies y = 9\text{ cm}$.
+\item $x + 9 + 13 = 30 \implies x = 8\text{ cm}$.
+\end{itemize}
+
+\textbf{Answer:} Sides are $8\text{ cm}$, $9\text{ cm}$, and $13\text{ cm}$.
+
+---
+
+\subsection*{Problem 3.2}
+\textbf{Problem Statement:} Solve the linear systems using Gaussian elimination:
+
+\medskip
+\textbf{a)}
+$$ \begin{cases} 3x_1 + 2x_2 + x_3 = 0 \\ 7x_1 + 6x_2 + 5x_3 = 0 \\ 5x_1 + 4x_2 + 3x_3 = 0 \end{cases} $$
+
+\textbf{Solution:}
+$$ \begin{pmatrix} 3 & 2 & 1 \\ 7 & 6 & 5 \\ 5 & 4 & 3 \end{pmatrix} \xrightarrow[R_3 \leftarrow 3R_3 - 5R_1]{R_2 \leftarrow 3R_2 - 7R_1} \begin{pmatrix} 3 & 2 & 1 \\ 0 & 4 & 8 \\ 0 & 2 & 4 \end{pmatrix} \xrightarrow{R_3 \leftarrow 2R_3 - R_2} \begin{pmatrix} 3 & 2 & 1 \\ 0 & 4 & 8 \\ 0 & 0 & 0 \end{pmatrix} $$
+Set $x_3 = t$ (free variable):
+\begin{itemize}
+\item $4x_2 + 8t = 0 \implies x_2 = -2t$.
+\item $3x_1 + 2(-2t) + t = 0 \implies x_1 = t$.
+\end{itemize}
+
+\textbf{Answer:} $(x_1, x_2, x_3) = (t, -2t, t)$, for $t \in \mathbb{R}$.
+
+\medskip
+\textbf{b)}
+$$ \begin{cases} -3x_1 + x_2 + x_3 = 0 \\ 5x_1 + x_2 - 2x_3 = 2 \\ -2x_1 - 2x_2 + x_3 = -3 \end{cases} $$
+
+\textbf{Solution:}
+$$ \left(\begin{array}{ccc|c} -3 & 1 & 1 & 0 \\ 5 & 1 & -2 & 2 \\ -2 & -2 & 1 & -3 \end{array}\right) \xrightarrow[R_3 \leftarrow 3R_3 - 2R_1]{R_2 \leftarrow 3R_2 + 5R_1} \left(\begin{array}{ccc|c} -3 & 1 & 1 & 0 \\ 0 & 8 & -1 & 6 \\ 0 & -8 & 1 & -9 \end{array}\right) \xrightarrow{R_3 \leftarrow R_3 + R_2} \left(\begin{array}{ccc|c} -3 & 1 & 1 & 0 \\ 0 & 8 & -1 & 6 \\ 0 & 0 & 0 & -3 \end{array}\right) $$
+Row 3 gives $0 = -3$ (inconsistent).
+
+\textbf{Answer:} No solution.
+
+\medskip
+\textbf{c)}
+$$ \begin{cases} 7x_1 - 5x_2 - 2x_3 - 4x_4 = 8 \\ -3x_1 + 2x_2 + x_3 + 2x_4 = -3 \\ 2x_1 - x_2 - x_3 - 2x_4 = 1 \\ -x_1 + x_3 + 2x_4 = 1 \end{cases} $$
+
+\textbf{Solution:} Reordering rows putting $R_4$ first:
+$$ \left(\begin{array}{cccc|c} -1 & 0 & 1 & 2 & 1 \\ 2 & -1 & -1 & -2 & 1 \\ -3 & 2 & 1 & 2 & -3 \\ 7 & -5 & -2 & -4 & 8 \end{array}\right) \to \left(\begin{array}{cccc|c} -1 & 0 & 1 & 2 & 1 \\ 0 & -1 & 1 & 2 & 3 \\ 0 & 2 & -2 & -4 & -6 \\ 0 & -5 & 5 & 10 & 15 \end{array}\right) \to \left(\begin{array}{cccc|c} -1 & 0 & 1 & 2 & 1 \\ 0 & -1 & 1 & 2 & 3 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 \end{array}\right) $$
+Free variables: $x_3 = s$, $x_4 = t$. Expressing dependent variables: $x_2 = s + 2t - 3$, $x_1 = s + 2t - 1$.
+
+\textbf{Answer:} $(x_1, x_2, x_3, x_4) = (s + 2t - 1, \; s + 2t - 3, \; s, \; t)$, for $s, t \in \mathbb{R}$.
+
+\newpage
+
+\section{Section 4. Bonus Problems and Theory (Assignment 1)}
+
+\subsection*{Bonus Problem 1.1}
+\textbf{Problem Statement:} Given vectors $a=(1,5,3)$, $b=(6,-4,-2)$, $c=(0,-5,7)$, $d=(-20,27,35)$. Find scalars $\alpha, \beta, \gamma$ such that $\alpha a, \beta b, \gamma c, d$ form a closed polygonal chain.
+
+\textbf{Solution:}
+Closure requires $\alpha a + \beta b + \gamma c + d = 0 \implies \alpha a + \beta b + \gamma c = -d$:
+$$ \begin{cases} \alpha + 6\beta = 20 \\ 5\alpha - 4\beta - 5\gamma = -27 \\ 3\alpha - 2\beta + 7\gamma = -35 \end{cases} $$
+Solving the system yields $\alpha = -4$, $\beta = 4$, $\gamma = -2$.
+
+\textbf{Answer:} $\alpha = -4$, $\beta = 4$, $\gamma = -2$.
+
+---
+
+\subsection*{Bonus Problem 1.2}
+\textbf{Problem Statement:} Solve $Ax = 12x$, where $A = \begin{pmatrix} 6 & 4 & 3 \\ 6 & 0 & 9 \\ 0 & 8 & 0 \end{pmatrix}$ and $\sum_{i=1}^3 x_i = 1$.
+
+\textbf{Solution:}
+Rewrite as $(A - 12I)x = 0$:
+$$ \begin{pmatrix} -6 & 4 & 3 \\ 6 & -12 & 9 \\ 0 & 8 & -12 \end{pmatrix} \to \begin{pmatrix} -6 & 4 & 3 \\ 0 & -8 & 12 \\ 0 & 0 & 0 \end{pmatrix} $$
+Thus $x_2 = 1.5 x_3$ and $x_1 = 1.5 x_3$. Applying $x_1 + x_2 + x_3 = 1$:
+$$ 1.5x_3 + 1.5x_3 + x_3 = 1 \implies 4x_3 = 1 \implies x_3 = 0.25. $$
+
+\textbf{Answer:} $x = (0.375, 0.375, 0.25)^T$.
+
+---
+
+\subsection*{Theoretical Questions}
+
+\textbf{a) When are two vectors orthogonal?}
+\begin{proof}[Answer]
+Two vectors $a$ and $b$ are orthogonal if and only if their inner product equals zero: $\langle a, b \rangle = 0$.
+\end{proof}
+
+\textbf{b) Give an example of data that can be represented as a vector.}
+\begin{proof}[Answer]
+A user profile in a recommendation algorithm (e.g., movie preferences across genres) can be encoded as a feature vector: $x = (\text{Sci-Fi}, \text{Comedy}, \text{Drama}) = (0.9, 0.1, 0.4)$.
+\end{proof}
+
+\textbf{c) If a variable has zero coefficients across all equations in a system, how many solutions can the system have?}
+\begin{proof}[Answer]
+The system can have either **0 solutions** (inconsistent) or **infinitely many solutions**. It can **never** have a unique solution because the variable with zero coefficients acts as a free variable that can take any value in the scalar field without affecting any equation.
+\end{proof}
+
+\newpage
+
+% ==============================================================================
+% ASSIGNMENT 2
+% ==============================================================================
+\part{Assignment 2. Matrices and Matrix Operations}
+
+\section{Section 1. Matrix Algebra}
+
+\subsection*{Problem 1.1}
+\textbf{Problem Statement:} Compute $3A - 2B + C$ for:
+$$ A = \begin{pmatrix} 2 & -1 & 4 \\ 0 & 3 & -2 \end{pmatrix}, \quad B = \begin{pmatrix} -1 & 5 & 2 \\ 4 & -3 & 1 \end{pmatrix}, \quad C = \begin{pmatrix} 3 & 0 & -1 \\ -2 & 1 & 4 \end{pmatrix} $$
+
+\textbf{Solution:}
+$$ 3A - 2B + C = \begin{pmatrix} 6 & -3 & 12 \\ 0 & 9 & -6 \end{pmatrix} + \begin{pmatrix} 2 & -10 & -4 \\ -8 & 6 & -2 \end{pmatrix} + \begin{pmatrix} 3 & 0 & -1 \\ -2 & 1 & 4 \end{pmatrix} = \begin{pmatrix} 11 & -13 & 7 \\ -10 & 16 & -4 \end{pmatrix}. $$
+
+\textbf{Answer:} $\begin{pmatrix} 11 & -13 & 7 \\ -10 & 16 & -4 \end{pmatrix}$.
+
+---
+
+\subsection*{Problem 1.2}
+\textbf{Problem Statement:} Multiply matrices $A \cdot B$:
+$$ A = \begin{pmatrix} 1 & 3 & -2 \\ 2 & 0 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & 1 \\ -1 & 3 \\ 0 & -2 \end{pmatrix} $$
+
+\textbf{Solution:}
+$$ AB = \begin{pmatrix} 1(2)+3(-1)+(-2)(0) & 1(1)+3(3)+(-2)(-2) \\ 2(2)+0(-1)+4(0) & 2(1)+0(3)+4(-2) \end{pmatrix} = \begin{pmatrix} -1 & 14 \\ 4 & -6 \end{pmatrix}. $$
+
+\textbf{Answer:} $AB = \begin{pmatrix} -1 & 14 \\ 4 & -6 \end{pmatrix}$.
+
+---
+
+\subsection*{Problem 1.3}
+\textbf{Problem Statement:} Find $A^T$ and verify $(A^T)^T = A$ for $A = \begin{pmatrix} 4 & 1 & -3 \\ 2 & 8 & 5 \end{pmatrix}$.
+
+\textbf{Solution:}
+$$ A^T = \begin{pmatrix} 4 & 2 \\ 1 & 8 \\ -3 & 5 \end{pmatrix} \implies (A^T)^T = \begin{pmatrix} 4 & 1 & -3 \\ 2 & 8 & 5 \end{pmatrix} = A. \quad \square $$
+
+\newpage
+
+\section{Section 2. Determinants and Inverses}
+
+\subsection*{Problem 2.1}
+\textbf{Problem Statement:} Compute the determinant of $A = \begin{pmatrix} 2 & 3 & -1 \\ 4 & 1 & 5 \\ -2 & 0 & 3 \end{pmatrix}$.
+
+\textbf{Solution:} Expand along Row 3:
+$$ \det(A) = -2 \begin{vmatrix} 3 & -1 \\ 1 & 5 \end{vmatrix} + 3 \begin{vmatrix} 2 & 3 \\ 4 & 1 \end{vmatrix} = -2(15 + 1) + 3(2 - 12) = -32 - 30 = -62. $$
+
+\textbf{Answer:} $\det(A) = -62$.
+
+---
+
+\subsection*{Problem 2.2}
+\textbf{Problem Statement:} Find the inverse $A^{-1}$ for $A = \begin{pmatrix} 3 & 4 \\ 1 & 2 \end{pmatrix}$.
+
+\textbf{Solution:} $\det(A) = 3(2) - 4(1) = 2 \ne 0$.
+$$ A^{-1} = \frac{1}{2} \begin{pmatrix} 2 & -4 \\ -1 & 3 \end{pmatrix} = \begin{pmatrix} 1 & -2 \\ -0.5 & 1.5 \end{pmatrix}. $$
+
+\textbf{Answer:} $A^{-1} = \begin{pmatrix} 1 & -2 \\ -0.5 & 1.5 \end{pmatrix}$.
+
+\newpage
+
+\section{Section 3. Matrix Equations}
+
+\subsection*{Problem 3.1}
+\textbf{Problem Statement:} Solve $AX = B$ for $X$, where $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $B = \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix}$.
+
+\textbf{Solution:}
+$\det(A) = -2 \implies A^{-1} = \begin{pmatrix} -2 & 1 \\ 1.5 & -0.5 \end{pmatrix}$.
+$$ X = A^{-1} B = \begin{pmatrix} -2 & 1 \\ 1.5 & -0.5 \end{pmatrix} \begin{pmatrix} 5 & 6 \\ 7 & 8 \end{pmatrix} = \begin{pmatrix} -3 & -4 \\ 4 & 5 \end{pmatrix}. $$
+
+\textbf{Answer:} $X = \begin{pmatrix} -3 & -4 \\ 4 & 5 \end{pmatrix}$.
+
+\newpage
+
+\section{Section 4. Bonus Problems and Theory (Assignment 2)}
+
+\subsection*{Bonus Problem 2.1}
+\textbf{Problem Statement:} Prove that $\text{Tr}(AB - BA) = 0$ for square matrices $A, B \in \mathbb{R}^{n \times n}$.
+
+\textbf{Proof:}
+Using trace linearity and cyclic property $\text{Tr}(AB) = \text{Tr}(BA)$:
+$$ \text{Tr}(AB - BA) = \text{Tr}(AB) - \text{Tr}(BA) = \text{Tr}(AB) - \text{Tr}(AB) = 0. \quad \square $$
+
+---
+
+\subsection*{Theoretical Questions}
+
+\textbf{a) Does $AB = BA$ hold in general for square matrices?}
+\begin{proof}[Answer]
+No, matrix multiplication is generally non-commutative. Counterexample:
+$$ A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, B = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} \implies AB = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \ne BA = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}. $$
+\end{proof}
+
+\textbf{b) What happens to a matrix determinant under transposition?}
+\begin{proof}[Answer]
+The determinant remains unchanged: $\det(A^T) = \det(A)$.
+\end{proof}
+
+\newpage
+
+% ==============================================================================
+% ASSIGNMENT 3
+% ==============================================================================
+\part{Assignment 3. Linear Spaces, Basis, Rank, and Eigenvalues}
+
+\section{Section 1. Linear Independence and Bases}
+
+\subsection*{Problem 1.1}
+\textbf{Problem Statement:} Test $v_1 = (1, 2, 3), v_2 = (2, 5, 7), v_3 = (3, 7, 10)$ for linear independence.
+
+\textbf{Solution:}
+$$ \det \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ 3 & 7 & 10 \end{pmatrix} = 1(50 - 49) - 2(20 - 21) + 3(14 - 15) = 1 + 2 - 3 = 0. $$
+
+\textbf{Answer:} The vectors are linearly dependent ($v_3 = v_1 + v_2$).
+
+---
+
+\subsection*{Problem 1.2}
+\textbf{Problem Statement:} Expand $x = (5, 9, 14)$ in basis $e_1 = (1, 1, 1), e_2 = (1, 2, 3), e_3 = (2, -1, 1)$.
+
+\textbf{Solution:}
+$$ \begin{cases} c_1 + c_2 + 2c_3 = 5 \\ c_1 + 2c_2 - c_3 = 9 \\ c_1 + 3c_2 + c_3 = 14 \end{cases} \implies c_1 = 0, \; c_2 = 4.6, \; c_3 = 0.2. $$
+
+\textbf{Answer:} Coordinates of $x$: $(0, 4.6, 0.2)^T$.
+
+\newpage
+
+\section{Section 2. Matrix Rank and Dimension}
+
+\subsection*{Problem 2.1}
+\textbf{Problem Statement:} Find the rank of $A = \begin{pmatrix} 1 & -2 & 3 & 1 \\ 2 & 1 & -1 & 3 \\ 3 & -1 & 2 & 4 \end{pmatrix}$.
+
+\textbf{Solution:}
+$$ \begin{pmatrix} 1 & -2 & 3 & 1 \\ 2 & 1 & -1 & 3 \\ 3 & -1 & 2 & 4 \end{pmatrix} \to \begin{pmatrix} 1 & -2 & 3 & 1 \\ 0 & 5 & -7 & 1 \\ 0 & 5 & -7 & 1 \end{pmatrix} \to \begin{pmatrix} 1 & -2 & 3 & 1 \\ 0 & 5 & -7 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}. $$
+
+\textbf{Answer:} $\text{rank}(A) = 2$.
+
+\newpage
+
+\section{Section 3. Eigenvalues and Eigenvectors}
+
+\subsection*{Problem 3.1}
+\textbf{Problem Statement:} Find eigenvalues and eigenvectors for $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$.
+
+\textbf{Solution:}
+1. Characteristic polynomial:
+$$ \det(A - \lambda I) = \lambda^2 - 7\lambda + 10 = 0 \implies \lambda_1 = 5, \quad \lambda_2 = 2. $$
+2. Eigenvectors:
+\begin{itemize}
+\item For $\lambda_1 = 5$: $(A - 5I)v = 0 \implies -v_1 + v_2 = 0 \implies v^{(1)} = (1, 1)^T$.
+\item For $\lambda_2 = 2$: $(A - 2I)v = 0 \implies 2v_1 + v_2 = 0 \implies v^{(2)} = (1, -2)^T$.
+\end{itemize}
+
+\textbf{Answer:} Eigenvalues: $\lambda_1 = 5, \lambda_2 = 2$; Eigenvectors: $v^{(1)} = (1, 1)^T, v^{(2)} = (1, -2)^T$.
+
+\newpage
+
+\section{Section 4. Bonus Problems and Theory (Assignment 3)}
+
+\subsection*{Bonus Problem 3.1}
+\textbf{Problem Statement:} Prove that if $\lambda$ is an eigenvalue of an invertible matrix $A$, then $\frac{1}{\lambda}$ is an eigenvalue of $A^{-1}$.
+
+\textbf{Proof:}
+Given $Av = \lambda v$ ($v \neq 0$). Since $A$ is invertible, $\lambda \ne 0$. Multiply by $A^{-1}$:
+$$ A^{-1}(Av) = A^{-1}(\lambda v) \implies v = \lambda A^{-1}v \implies A^{-1}v = \frac{1}{\lambda}v. \quad \square $$
+
+---
+
+\subsection*{Theoretical Questions}
+
+\textbf{a) What is the dimension of a linear space?}
+\begin{proof}[Answer]
+The dimension of a space $V$ ($\dim V$) is the maximum number of linearly independent vectors in $V$, or equivalently, the number of vectors in any basis of $V$.
+\end{proof}
+
+\textbf{b) How does matrix rank relate to row/column independence?}
+\begin{proof}[Answer]
+The rank of a matrix equals the maximum number of linearly independent rows (which always equals the maximum number of linearly independent columns).
+\end{proof}
+
+\newpage
+
+% ==============================================================================
+% ASSIGNMENT 4
+% ==============================================================================
+\part{Assignment 4. Linear Operators and Quadratic Forms}
+
+\section{Section 1. Linear Operators}
+
+\subsection*{Problem 1.1}
+\textbf{Problem Statement:} Find the matrix of operator $A$ rotating vectors in $\mathbb{R}^2$ counterclockwise by $\phi = \frac{\pi}{3}$.
+
+\textbf{Solution:}
+$$ M_A = \begin{pmatrix} \cos(\pi/3) & -\sin(\pi/3) \\ \sin(\pi/3) & \cos(\pi/3) \end{pmatrix} = \begin{pmatrix} 1/2 & -\sqrt{3}/2 \\ \sqrt{3}/2 & 1/2 \end{pmatrix}. $$
+
+\textbf{Answer:} $M_A = \begin{pmatrix} 0.5 & -\sqrt{3}/2 \\ \sqrt{3}/2 & 0.5 \end{pmatrix}$.
+
+---
+
+\subsection*{Problem 1.2}
+\textbf{Problem Statement:} Operator $A$ maps $e_1 \to (2,5)^T$ and $e_2 \to (-1,3)^T$. Find image of $x = (3,-2)^T$.
+
+\textbf{Solution:}
+$$ A(x) = \begin{pmatrix} 2 & -1 \\ 5 & 3 \end{pmatrix} \begin{pmatrix} 3 \\ -2 \end{pmatrix} = \begin{pmatrix} 6 + 2 \\ 15 - 6 \end{pmatrix} = \begin{pmatrix} 8 \\ 9 \end{pmatrix}. $$
+
+\textbf{Answer:} $A(x) = (8, 9)^T$.
+
+\newpage
+
+\section{Section 2. Quadratic Forms}
+
+\subsection*{Problem 2.1}
+\textbf{Problem Statement:} Construct the matrix for $Q(x_1, x_2, x_3) = 3x_1^2 + 5x_2^2 - 2x_3^2 + 4x_1x_2 - 6x_1x_3 + 2x_2x_3$.
+
+\textbf{Solution:} Diagonal entries are $x_i^2$ coefficients; off-diagonals are half of $x_i x_j$ coefficients:
+$$ A = \begin{pmatrix} 3 & 2 & -3 \\ 2 & 5 & 1 \\ -3 & 1 & -2 \end{pmatrix}. $$
+
+---
+
+\subsection*{Problem 2.2}
+\textbf{Problem Statement:} Test $Q(x_1, x_2) = 2x_1^2 + 6x_1x_2 + 5x_2^2$ for definiteness using Sylvester's criterion.
+
+\textbf{Solution:}
+$A = \begin{pmatrix} 2 & 3 \\ 3 & 5 \end{pmatrix}$.
+Principal minors: $\Delta_1 = 2 > 0$, $\Delta_2 = 10 - 9 = 1 > 0$.
+
+\textbf{Answer:} Positive definite.
+
+\newpage
+
+\section{Section 3. Gram-Schmidt Orthogonalization}
+
+\subsection*{Problem 3.1}
+\textbf{Problem Statement:} Orthogonalize $f_1 = (1, 1, 0)$ and $f_2 = (1, 0, 1)$.
+
+\textbf{Solution:}
+1. $u_1 = f_1 = (1, 1, 0)$.
+2. $u_2 = f_2 - \frac{\langle f_2, u_1 \rangle}{\|u_1\|^2} u_1 = (1, 0, 1) - \frac{1}{2}(1, 1, 0) = (0.5, -0.5, 1)$.
+
+\textbf{Answer:} $u_1 = (1, 1, 0)$, $u_2 = (0.5, -0.5, 1)$.
+
+\newpage
+
+\section{Section 4. Bonus Problems and Theory (Assignment 4)}
+
+\subsection*{Bonus Problem 4.1}
+\textbf{Problem Statement:} Prove that eigenvectors corresponding to distinct eigenvalues of a real symmetric matrix are orthogonal.
+
+\textbf{Proof:}
+Let $A = A^T$, $Av_1 = \lambda_1 v_1$, $Av_2 = \lambda_2 v_2$ with $\lambda_1 \ne \lambda_2$.
+$$ \lambda_1 \langle v_1, v_2 \rangle = \langle Av_1, v_2 \rangle = v_1^T A^T v_2 = v_1^T A v_2 = \langle v_1, Av_2 \rangle = \lambda_2 \langle v_1, v_2 \rangle. $$
+$$ (\lambda_1 - \lambda_2) \langle v_1, v_2 \rangle = 0 \xrightarrow{\lambda_1 \neq \lambda_2} \langle v_1, v_2 \rangle = 0. \quad \square $$
+
+---
+
+\subsection*{Theoretical Questions}
+
+\textbf{a) State Sylvester's criterion for a negative definite quadratic form.}
+\begin{proof}[Answer]
+A form is negative definite iff its leading principal minors alternate signs starting with negative: $(-1)^k \Delta_k > 0$ for all $k=1, \dots, n$ ($\Delta_1 < 0, \Delta_2 > 0, \Delta_3 < 0, \dots$).
+\end{proof}
+
+\textbf{b) What is a self-adjoint (symmetric) operator?}
+\begin{proof}[Answer]
+An operator $A$ on an inner product space is self-adjoint if $\langle Ax, y \rangle = \langle x, Ay \rangle$ for all $x, y$. Its matrix in an orthonormal basis satisfies $A = A^T$.
+\end{proof}
+
+\newpage
+
+% ==============================================================================
+% ASSIGNMENT 5
+% ==============================================================================
+\part{Assignment 5. Singular Value Decomposition (SVD) and Tensors}
+
+\section{Section 1. Singular Value Decomposition (SVD)}
+
+\subsection*{Problem 1.1}
+\textbf{Problem Statement:} Find singular values for $A = \begin{pmatrix} 3 & 0 \\ 0 & -4 \end{pmatrix}$.
+
+\textbf{Solution:}
+$$ A^T A = \begin{pmatrix} 9 & 0 \\ 0 & 16 \end{pmatrix} \implies \lambda_1 = 16, \; \lambda_2 = 9 \implies \sigma_1 = \sqrt{16} = 4, \; \sigma_2 = \sqrt{9} = 3. $$
+
+\textbf{Answer:} $\sigma_1 = 4, \sigma_2 = 3$.
+
+---
+
+\subsection*{Problem 1.2}
+\textbf{Problem Statement:} Construct SVD $A = U \Sigma V^T$ for $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.
+
+\textbf{Solution:}
+$A^T A = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}$. Eigenvalues: $\lambda = \frac{3 \pm \sqrt{5}}{2}$.
+Singular values: $\sigma_1 = \frac{1+\sqrt{5}}{2} \approx 1.618$, $\sigma_2 = \frac{\sqrt{5}-1}{2} \approx 0.618$.
+$$ \Sigma = \begin{pmatrix} \frac{1+\sqrt{5}}{2} & 0 \\ 0 & \frac{\sqrt{5}-1}{2} \end{pmatrix}. $$
+Vectors in $V$ are normalized eigenvectors of $A^T A$, and columns of $U$ are computed as $u_i = \frac{1}{\sigma_i} A v_i$.
+
+\newpage
+
+\section{Section 2. Pseudoinverse Matrices}
+
+\subsection*{Problem 2.1}
+\textbf{Problem Statement:} Find Moore-Penrose pseudoinverse $A^+$ for $A = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$.
+
+\textbf{Solution:} Full column rank formula $A^+ = (A^T A)^{-1} A^T$:
+$$ A^T A = 2^2 + 1^2 = 5 \implies A^+ = \frac{1}{5} \begin{pmatrix} 2 & 1 \end{pmatrix} = \begin{pmatrix} 0.4 & 0.2 \end{pmatrix}. $$
+
+\textbf{Answer:} $A^+ = \begin{pmatrix} 0.4 & 0.2 \end{pmatrix}$.
+
+\newpage
+
+\section{Section 3. Tensors and Contraction}
+
+\subsection*{Problem 3.1}
+\textbf{Problem Statement:} Given $T \in \mathbb{R}^{2 \times 2 \times 2}$ with $T_{ijk} = i + j + k$, compute contraction along indices 1 and 2: $S_k = \sum_{i=1}^2 T_{iik}$.
+
+\textbf{Solution:}
+\begin{itemize}
+\item For $k = 1$: $S_1 = T_{111} + T_{221} = (1+1+1) + (2+2+1) = 3 + 5 = 8$.
+\item For $k = 2$: $S_2 = T_{112} + T_{222} = (1+1+2) + (2+2+2) = 4 + 6 = 10$.
+\end{itemize}
+
+\textbf{Answer:} $S = (8, 10)^T$.
+
+\newpage
+
+\section{Section 4. Bonus Problems and Theory (Assignment 5)}
+
+\subsection*{Bonus Problem 5.1}
+\textbf{Problem Statement:} Prove that $(A^+)^+ = A$ for any matrix $A$.
+
+\textbf{Proof:}
+The Moore-Penrose pseudoinverse $X = A^+$ uniquely satisfies:
+1) $AXA = A$, 2) $XAX = X$, 3) $(AX)^T = AX$, 4) $(XA)^T = XA$.
+Let $Y = X^+ = (A^+)^+$. $Y$ must satisfy identical conditions with respect to $X$:
+1) $XYX = X$, 2) $YXY = Y$, 3) $(XY)^T = XY$, 4) $(YX)^T = YX$.
+Substituting $Y = A$ reduces these to the original four properties of $X$. By uniqueness, $(A^+)^+ = A$. \qed
+
+---
+
+\subsection*{Theoretical Questions}
+
+\textbf{a) What is the geometric interpretation of SVD?}
+\begin{proof}[Answer]
+Geometric action of $A$ decomposes into: rotation/reflection ($V^T$), scaling along coordinate axes by $\sigma_i$ ($\Sigma$), and a second rotation/reflection ($U$). It maps a unit sphere into an ellipsoid with semi-axes of length $\sigma_i$.
+\end{proof}
+
+\textbf{b) How does tensor rank differ from matrix rank?}
+\begin{proof}[Answer]
+Matrix rank equals the maximum number of independent rows/columns and is computable in polynomial time. CP-rank of a tensor order $\ge 3$ is the minimal number of rank-1 tensors summing to it; computing it is NP-hard, and it can exceed any single spatial dimension.
+\end{proof}
+
+\end{document}
