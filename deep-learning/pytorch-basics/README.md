@@ -4,7 +4,7 @@ An introduction to PyTorch tensors, custom tensor functions and moving
 computation between CPU and GPU.
 
 **Notebook:** [`pytorch_basics.ipynb`](pytorch_basics.ipynb)
-(text and comments in Russian; run in Google Colab on a T4 GPU)
+(code comments in Russian; run in Google Colab on a T4 GPU)
 
 ## What I did
 

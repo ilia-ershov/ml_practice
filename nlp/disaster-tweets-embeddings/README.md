@@ -6,7 +6,7 @@ is fed to the same CatBoost classifier head, so the comparison is about the
 embeddings alone; the last step fine-tunes BERT end to end.
 
 **Notebook:** [`text_embeddings_disaster_tweets.ipynb`](text_embeddings_disaster_tweets.ipynb)
-(text and comments in Russian)
+(code comments in Russian)
 
 ## Dataset
 

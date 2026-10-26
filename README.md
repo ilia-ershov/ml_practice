@@ -99,10 +99,13 @@ available.
 
 ## Language note
 
-The notebooks were written as coursework and their markdown, comments and
-answers are mostly in **Russian**. Rerunning them would take many hours of
-GPU time, so the saved outputs are kept as they are. The project READMEs give
-full English descriptions of each task, approach and result.
+The notebooks were originally written in Russian as coursework. All markdown
+cells (task descriptions, answers and conclusions) have been translated into
+English. Code comments and a few printed outputs are still in Russian: the
+notebooks were not rerun, because that would take many hours of GPU time, so
+the saved outputs are exactly the original ones. The experiment report of the
+Chinese-characters project (`report_ru.pdf`) is in Russian, and its README
+gives an English summary.
 
 ## Tech stack
 

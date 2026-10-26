@@ -4,7 +4,7 @@ Predicting whether a person earns more than $50K a year from census data, and
 comparing a single decision tree with bagging and stacking ensembles.
 
 **Notebook:** [`ensembles_adult_income.ipynb`](ensembles_adult_income.ipynb)
-(text and comments in Russian)
+(code comments in Russian)
 
 ## Dataset
 

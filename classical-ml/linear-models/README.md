@@ -5,7 +5,7 @@ regression and a linear SVM, visualizing decision boundaries and support
 vectors, and comparing classification metrics.
 
 **Notebook:** [`logistic_regression_svm.ipynb`](logistic_regression_svm.ipynb)
-(text and comments in Russian)
+(code comments in Russian)
 
 ## What I did
 

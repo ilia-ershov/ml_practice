@@ -5,7 +5,7 @@ connected neural network, and step by step making the network beat a linear
 baseline.
 
 **Notebook:** [`mlp_song_year_prediction.ipynb`](mlp_song_year_prediction.ipynb)
-(text and comments in Russian; HSE "Introduction to Deep Learning", homework 1)
+(code comments in Russian; HSE "Introduction to Deep Learning", homework 1)
 
 ## Dataset
 

@@ -5,7 +5,7 @@ CIFAR-10, followed by experiments with learning-rate schedules, data
 augmentation and experiment tracking in Weights & Biases.
 
 **Notebook:** [`cnn_cifar10.ipynb`](cnn_cifar10.ipynb)
-(text and comments in Russian; HSE "Introduction to Deep Learning", homework 2)
+(code comments in Russian; HSE "Introduction to Deep Learning", homework 2)
 
 ## Dataset
 

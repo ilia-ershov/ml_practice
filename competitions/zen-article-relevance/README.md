@@ -5,7 +5,7 @@ from their titles and texts (mostly Russian). Built on Kaggle under tight
 memory limits.
 
 **Notebook:** [`zen_article_relevance.ipynb`](zen_article_relevance.ipynb)
-(Kaggle notebook; comments in Russian)
+(Kaggle notebook; code comments in Russian)
 
 ## Task
 
