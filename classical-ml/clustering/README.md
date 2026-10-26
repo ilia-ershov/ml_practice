@@ -83,37 +83,22 @@ stability, and domain knowledge should also be considered. K-Means is most
 appropriate for relatively compact, separated clusters and may be less
 effective for irregularly shaped groups or data with strong outliers.
 
-## Installation
+## Setup
 
-The notebooks use Python and Jupyter. Python 3.10 or newer is recommended.
-
-From the repository root:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-On Windows, activate the environment with:
-
-```powershell
-.venv\Scripts\activate
-```
-
-Install the required packages:
+See the [root README](../../README.md#getting-started) for creating a virtual
+environment. The packages used here are:
 
 ```bash
-python -m pip install --upgrade pip
 python -m pip install jupyter numpy pandas matplotlib seaborn scikit-learn folium
 ```
 
 ## Required datasets
 
-The notebooks expect these CSV files in the `clustering/` folder:
+The notebooks expect these CSV files in the `classical-ml/clustering/` folder:
 
 ```text
-clustering/airline.csv
-clustering/GlobalWeatherRepository.csv
+classical-ml/clustering/airline.csv
+classical-ml/clustering/GlobalWeatherRepository.csv
 ```
 
 The datasets are not included in this repository. Download the corresponding
@@ -129,11 +114,11 @@ jupyter notebook
 
 Open one of the following notebooks:
 
-- `clustering/solution.ipynb`
-- `clustering/creative.ipynb`
+- `classical-ml/clustering/solution.ipynb`
+- `classical-ml/clustering/creative.ipynb`
 
 Run the cells from top to bottom. The cells that load CSV files require the
 datasets described above.
 
 After running the map-generation cells in `creative.ipynb`, open
-`clustering/map.html` in a web browser to view the interactive result.
+`classical-ml/clustering/map.html` in a web browser to view the interactive result.
