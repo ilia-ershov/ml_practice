@@ -1,0 +1,38 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Datasets, embeddings and model artifacts (download them separately)
+data/
+*.csv
+*.npy
+*.parquet
+*.zip
+*.bin
+*.bin.gz
+*.pth
+*.pt
+glove*.txt
+
+# Experiment outputs
+wandb/
+bert-binary-classifier/
+submission*.csv
+sub_*.csv
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk

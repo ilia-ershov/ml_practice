@@ -1,0 +1,25 @@
+# Core
+jupyter
+numpy
+pandas
+matplotlib
+seaborn
+tqdm
+
+# Classical ML
+scikit-learn
+catboost
+ucimlrepo
+folium
+
+# Deep learning
+torch
+torchvision
+wandb
+
+# NLP
+transformers
+datasets
+sentence-transformers
+gensim
+nltk
